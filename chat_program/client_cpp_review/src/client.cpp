@@ -114,6 +114,7 @@ auto Client::receive_all_nickname() -> strings
         return result;
 
     // buffer에, offset을 뒤로 이동시켜가며, m_sock에서 read하는 함수
+    
     if (buffer = pump_packet_to_string(m_sock, to_read))
         return result;
 

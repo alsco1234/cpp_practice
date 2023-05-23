@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
-#include <iomanip>  // 소수점 자릿수 조정을 위한 헤더 추가
 
 using namespace std;
 

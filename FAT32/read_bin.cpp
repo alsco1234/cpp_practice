@@ -3,11 +3,13 @@
 #include <iomanip>
 #include <string>
 
+using namespace std;
+
 void readBinaryFileBySize(const std::string& filename, int byteSize) {
-    std::ifstream file(filename, std::ios::binary);
+    ifstream file(filename, std::ios::binary);
 
     if (!file) {
-        std::cerr << "no file" << std::endl;
+        cerr << "no file" << endl;
         return;
     }
 
@@ -15,9 +17,10 @@ void readBinaryFileBySize(const std::string& filename, int byteSize) {
     while (file.read(buffer, byteSize)) {
         for (int i = 0; i < byteSize; i++) {
             unsigned char value = buffer[i];
-            std::cout << std::hex << std::setw(2) << std::setfill('0') << static_cast<unsigned int>(value) << " ";
+            cout << hex << setw(2) << setfill('0') << static_cast<unsigned int>(value) << " ";
         }
-        std::cout << std::endl;
+        cout << endl;
+        break;
     }
 
     delete[] buffer;
@@ -25,22 +28,22 @@ void readBinaryFileBySize(const std::string& filename, int byteSize) {
 }
 
 int main() {
-    std::string filename = "leaf.jpg";
+    string filename = "leaf.jpg";
 
     // 2바이트씩 읽기
-    std::cout << "2bytes" << std::endl;
+    cout << "2bytes" << endl;
     readBinaryFileBySize(filename, 2);
 
     // 4바이트씩 읽기
-    std::cout << "4bytes" << std::endl;
+    cout << "4bytes" << endl;
     readBinaryFileBySize(filename, 4);
 
     // 8바이트씩 읽기
-    std::cout << "8bytes" << std::endl;
+    cout << "8bytes" << endl;
     readBinaryFileBySize(filename, 8);
 
     // 16바이트씩 읽기
-    std::cout << "16bytes" << std::endl;
+    cout << "16bytes" << endl;
     readBinaryFileBySize(filename, 16);
 
     return 0;

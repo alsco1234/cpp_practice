@@ -5,8 +5,8 @@
 
 using namespace std;
 
-void readBinaryFileBySize(const std::string& filename, int byteSize) {
-    ifstream file(filename, std::ios::binary);
+void readBinaryFileBySize(const string& filename, int byteSize) {
+    ifstream file(filename, ios::binary);
 
     if (!file) {
         cerr << "no file" << endl;

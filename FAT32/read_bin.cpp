@@ -14,14 +14,9 @@ void readBinaryFileBySize(const std::string& filename, int byteSize) {
     }
 
     char* buffer = new char[byteSize];
-    while (file.read(buffer, byteSize)) {
-        for (int i = 0; i < byteSize; i++) {
-            unsigned char value = buffer[i];
-            cout << hex << setw(2) << setfill('0') << static_cast<unsigned int>(value) << " ";
-        }
-        cout << endl;
-        break;
-    }
+    file.read(buffer, byteSize);
+    unsigned char value = buffer[0];
+    cout << hex << setw(2) << setfill('0') << static_cast<unsigned int>(value) << " ";
 
     delete[] buffer;
     file.close();

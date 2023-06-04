@@ -26,19 +26,19 @@ int main() {
     string filename = "leaf.jpg";
 
     // 2바이트씩 읽기
-    cout << "2bytes" << endl;
+    cout << "2bytes: " << endl;
     readBinaryFileBySize(filename, 2);
 
     // 4바이트씩 읽기
-    cout << "4bytes" << endl;
+    cout << "4bytes: " << endl;
     readBinaryFileBySize(filename, 4);
 
     // 8바이트씩 읽기
-    cout << "8bytes" << endl;
+    cout << "8bytes: " << endl;
     readBinaryFileBySize(filename, 8);
 
     // 16바이트씩 읽기
-    cout << "16bytes" << endl;
+    cout << "16bytes: " << endl;
     readBinaryFileBySize(filename, 16);
 
     return 0;

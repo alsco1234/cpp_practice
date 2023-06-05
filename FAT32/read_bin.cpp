@@ -1,6 +1,7 @@
 /*
 [TODO]
-1) class의 멤버변수로 ifstream 받기
+1) 시작위치 받기
+2) class의 멤버변수로 ifstream 받기
 2) output으로 적어서 저장하기
 */
 
@@ -10,7 +11,7 @@
 
 using namespace std;
 
-auto readBinaryFileBySize(const string& filename, const int& byteSize) -> int
+auto readBinaryFileBySize(const string& filename, const int& byteSize) -> long int
 {
     ifstream file(filename, ios::binary);
 
@@ -26,10 +27,8 @@ auto readBinaryFileBySize(const string& filename, const int& byteSize) -> int
     file.seekg(0, ios::beg);
     // bytesize만큼 읽기
     file.read((char*)buffer, byteSize*2);
-    
-    cout << hex << buffer[0] << endl;
 
-    int value = 0;
+    long int value = 0;
     for (int i = 0; i < byteSize; ++i){
         /* 
         little endian으로 읽기 
@@ -52,49 +51,20 @@ int main() {
     string filename = "leaf.jpg";
 
     // 1 bytes
-    int value1 = readBinaryFileBySize(filename, 1);
-    cout << "1 bytes] hex : " <<  value1 << " dec : " << dec << value1 << endl;
+    long int value1 = readBinaryFileBySize(filename, 1);
+    cout << "1 bytes] hex : " <<  value1 << " dec : " << dec << value1 << endl << endl;
+
     // 2 bytes
-    int value2 = readBinaryFileBySize(filename, 2);
-    cout << "2 bytes] hex : " << hex << value2 << " dec : " << dec << value2 << endl;
+    long int value2 = readBinaryFileBySize(filename, 2);
+    cout << "2 bytes] hex : " << hex << value2 << " dec : " << dec << value2 << endl << endl;
 
     // 4 bytes
-    int value4 = readBinaryFileBySize(filename, 4);
-    cout << "4 bytes] hex : " << hex << value4 << " dec : " << dec << value4 << endl;
+    long int value4 = readBinaryFileBySize(filename, 4);
+    cout << "4 bytes] hex : " << hex << value4 << " dec : " << dec << value4 << endl << endl;
 
     // 8 bytes
-    int value8 = readBinaryFileBySize(filename, 8);
+    long int value8 = readBinaryFileBySize(filename, 8);
     cout << "8 bytes] hex : " << hex << value8 << " dec : " << dec << value8 << endl;
 
     return 0;
 }
-
-/* 
-FF D8 FF E1 01 B6 45 78 69 66 00 00 4D 4D 00 2A 이 있을때
-
-1) FF를 읽으려면
-FF
-
-2) FF D8 읽으려면
-D8 먼저읽고, 그다음 FF읽기
-D8FF를 변환하기
-
-3) FF D8 FF 읽으려면
-FF 먼저읽고, 그다음 D8읽고, FF읽기
-FFD8FF를 변환하기
-
-4) FF D8 FF E1 읽려면
-E1 먼저읽고, 그다음 FF읽고, D8읽고, FF읽기
-
-...
-    0  1  2  .. n-1
-N) FF D8 .. 읽으려면
-buffer[0] = [n-1]byte
-buffer[1] = [n-2]byte
-...
-buffer[n-1] = [0]byte
-
-==
-
-for(int i=0; i<buffer_size)
-*/
